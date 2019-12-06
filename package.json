@@ -1,15 +1,15 @@
 {
-  "name": "gitbook-plugin-expandable-chapters",
+  "name": "gitbook-plugin-expandable-chapters-nolocalbutcookie",
   "description": "Expandable chapters for convenient navigation within a gitbook",
   "main": "index.js",
-  "version": "0.1.7",
+  "version": "0.0.1",
   "engines": {
     "gitbook": ">=0.4.6"
   },
-  "homepage": "https://github.com/DomainDrivenArchitecture/gitbook-plugin-expandable-chapters",
+  "homepage": "https://github.com/tuncat/gitbook-plugin-expandable-chapters",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DomainDrivenArchitecture/gitbook-plugin-expandable-chapters"
+    "url": "https://github.com/tuncat/gitbook-plugin-expandable-chapters"
   },
   "license": "Apache 2"
 }

@@ -51,8 +51,28 @@ require(['gitbook', 'jQuery'], function(gitbook, $) {
       lsItem($chapter);
     }
   }
+  function setCookie(cookieName,cookieValue,cookieDates){
+    var d = new Date();
+    d.setDate(d.getDate()+cookieDates);
+    document.cookie = cookieName+"="+cookieValue+";expires="+d.toGMTString();
+  }
+
+  function getCookie(cookieName){
+    var cookieStr = unescape(document.cookie);
+    var arr = cookieStr.split("; ");
+    var cookieValue = "";
+    for(var i=0;i<arr.length;i++){
+      var temp = arr[i].split("=");
+      if(temp[0]==cookieName){
+        cookieValue = temp[1];
+        break;
+      }
+    }
+    return cookieValue;
+  }
   var lsItem = function () {
-    var map = JSON.parse(localStorage.getItem(LS_NAMESPACE)) || {}
+    // var map = JSON.parse(localStorage.getItem(LS_NAMESPACE)) || {}
+    var map = JSON.parse(getCookie(LS_NAMESPACE)) || {}
     if (arguments.length) {
       var $chapters = arguments[0];
       $chapters.each(function (index, element) {
@@ -60,7 +80,8 @@ require(['gitbook', 'jQuery'], function(gitbook, $) {
         var value = $(this).hasClass(TOGGLE_CLASSNAME);
         map[level] = value;
       })
-      localStorage.setItem(LS_NAMESPACE, JSON.stringify(map));
+      setCookie(LS_NAMESPACE,JSON.stringify(map),1)
+      // localStorage.setItem(LS_NAMESPACE, JSON.stringify(map));
     } else {
       return $(CHAPTER).map(function(index, element){
         if (map[$(this).data('level')]) {
