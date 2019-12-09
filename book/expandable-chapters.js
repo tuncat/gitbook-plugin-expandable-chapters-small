@@ -1,4 +1,5 @@
 require(['gitbook', 'jQuery'], function(gitbook, $) {
+  var obj = {}
   var TOGGLE_CLASSNAME = 'expanded',
       CHAPTER = '.chapter',
       ARTICLES = '.articles',
@@ -71,8 +72,7 @@ require(['gitbook', 'jQuery'], function(gitbook, $) {
     return cookieValue;
   }
   var lsItem = function () {
-    // var map = JSON.parse(localStorage.getItem(LS_NAMESPACE)) || {}
-    var map = JSON.parse(getCookie(LS_NAMESPACE)) || {}
+    var map = obj
     if (arguments.length) {
       var $chapters = arguments[0];
       $chapters.each(function (index, element) {
@@ -80,8 +80,7 @@ require(['gitbook', 'jQuery'], function(gitbook, $) {
         var value = $(this).hasClass(TOGGLE_CLASSNAME);
         map[level] = value;
       })
-      setCookie(LS_NAMESPACE,JSON.stringify(map),1)
-      // localStorage.setItem(LS_NAMESPACE, JSON.stringify(map));
+      obj = JSON.parse(JSON.stringify(map))
     } else {
       return $(CHAPTER).map(function(index, element){
         if (map[$(this).data('level')]) {
